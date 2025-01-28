@@ -69,4 +69,5 @@ public class Prof {
             inverseJoinColumns = @JoinColumn(name = "examen_id", referencedColumnName = "id")
     )
     private Set<Examen> examens;
+
 }

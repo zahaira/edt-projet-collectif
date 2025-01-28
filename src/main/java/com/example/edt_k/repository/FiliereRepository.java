@@ -1,6 +1,7 @@
 package com.example.edt_k.repository;
 
 import com.example.edt_k.entity.Filiere;
+import com.example.edt_k.entity.Prof;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,5 +14,6 @@ public interface FiliereRepository extends JpaRepository<Filiere,Long> {
     Filiere findByModules(Optional<Module> course);
     @Query(value = "Select count(*) from filiere",nativeQuery = true)
     int getNbreFiliere();
+    Optional<Filiere> findByNomFiliere(String nomFiliere);
 
 }

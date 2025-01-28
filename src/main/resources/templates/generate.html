@@ -4,12 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>generer edt</title>
+    <title>Generate EDT</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
@@ -25,12 +24,10 @@
             background-color: rgba(0, 95, 115, 0.8);
             border: none;
         }
-
         .navbar a {
             color: white !important;
             font-size: 18px;
         }
-
         .navbar .navbar-brand {
             font-weight: 700;
             font-size: 22px;
@@ -76,160 +73,6 @@
             float: left;
             margin-top: 2px;
         }
-        table.table {
-            table-layout: fixed; /* Ensures columns have the same width */
-            width: 100%;
-            font-size: 16px; /* Increases the font size for better readability */
-        }
-        table.table tr th, table.table tr td {
-            border-color: #e9e9e9;
-            padding: 15px; /* Adds more padding for a spacious layout */
-            vertical-align: middle;
-            text-align: center; /* Centers text in each column */
-            word-wrap: break-word;
-        }
-        table.table th, table.table td {
-            width: 25%; /* Ensures equal column widths (4 columns total) */
-        }
-        table.table tr th {
-            background-color: #f5f5f5; /* Adds a light background to headers for better visibility */
-            font-weight: bold;
-        }
-        table.table tr th:first-child {
-            width: 60px;
-        }
-        table.table tr th:last-child {
-            width: 100px;
-        }
-        table.table-striped tbody tr:nth-of-type(odd) {
-            background-color: #fcfcfc;
-        }
-        table.table-striped.table-hover tbody tr:hover {
-            background: #f5f5f5;
-        }
-        table.table th i {
-            font-size: 13px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-        table.table td:last-child i {
-            opacity: 0.9;
-            font-size: 22px;
-            margin: 0 5px;
-        }
-        table.table td a {
-            font-weight: bold;
-            color: #566787;
-            display: inline-block;
-            text-decoration: none;
-            outline: none !important;
-        }
-        table.table td a:hover {
-            color: #2196F3;
-        }
-        table.table td a.edit {
-            color: #FFC107;
-        }
-        table.table td a.delete {
-            color: #F44336;
-        }
-        table.table td i {
-            font-size: 19px;
-        }
-        table.table .avatar {
-            border-radius: 50%;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-        .pagination {
-            float: right;
-            margin: 0 0 5px;
-        }
-        .pagination li a {
-            border: none;
-            font-size: 13px;
-            min-width: 30px;
-            min-height: 30px;
-            color: #999;
-            margin: 0 2px;
-            line-height: 30px;
-            border-radius: 2px !important;
-            text-align: center;
-            padding: 0 6px;
-        }
-        .pagination li a:hover {
-            color: #666;
-        }
-        .pagination li.active a, .pagination li.active a.page-link {
-            background: #03A9F4;
-        }
-        .pagination li.active a:hover {
-            background: #0397d6;
-        }
-        .pagination li.disabled i {
-            color: #ccc;
-        }
-        .pagination li i {
-            font-size: 16px;
-            padding-top: 6px
-        }
-        .hint-text {
-            float: left;
-            margin-top: 10px;
-            font-size: 13px;
-        }
-        /* Custom checkbox */
-        .custom-checkbox {
-            position: relative;
-        }
-        .custom-checkbox input[type="checkbox"] {
-            opacity: 0;
-            position: absolute;
-            margin: 5px 0 0 3px;
-            z-index: 9;
-        }
-        .custom-checkbox label:before{
-            width: 18px;
-            height: 18px;
-        }
-        .custom-checkbox label:before {
-            content: '';
-            margin-right: 10px;
-            display: inline-block;
-            vertical-align: text-top;
-            background: white;
-            border: 1px solid #bbb;
-            border-radius: 2px;
-            box-sizing: border-box;
-            z-index: 2;
-        }
-        .custom-checkbox input[type="checkbox"]:checked + label:after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 3px;
-            width: 6px;
-            height: 11px;
-            border: solid #000;
-            border-width: 0 3px 3px 0;
-            transform: inherit;
-            z-index: 3;
-            transform: rotateZ(45deg);
-        }
-        .custom-checkbox input[type="checkbox"]:checked + label:before {
-            border-color: #03A9F4;
-            background: #03A9F4;
-        }
-        .custom-checkbox input[type="checkbox"]:checked + label:after {
-            border-color: #fff;
-        }
-        .custom-checkbox input[type="checkbox"]:disabled + label:before {
-            color: #b8b8b8;
-            cursor: auto;
-            box-shadow: none;
-            background: #ddd;
-        }
-        /* Modal styles */
         .modal .modal-dialog {
             max-width: 400px;
         }
@@ -288,14 +131,104 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Generer <b>edt</b></h2>
+                    <h2>Generer <b>EDT</b></h2>
                 </div>
                 <div class="col-sm-6">
-                    <a th:href="@{/edt/test-genetic-algo}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Generer</span></a>
+                    <a th:href="@{/edt/test-genetic-algo}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Generer</span></a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-bordered">
+            <tbody>
+            <tr>
+                <td>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#uploadSalles"><span>Upload Salles</span></a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#uploadProfs"><span>Upload Proffesseurs</span></a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#uploadModules"><span>Upload Modules</span></a>
+                </td>
+
+                <td>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#uploadFilieres"><span>Upload Filières</span></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Modal for file upload salles -->
+        <div id="uploadSalles" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upload Excel File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data" th:action="@{/upload-salles}">
+                            <input type="file" name="file" accept=".xlsx" required />
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for file upload profs -->
+        <div id="uploadProfs" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upload Excel File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data" th:action="@{/upload-profs}">
+                            <input type="file" name="file" accept=".xlsx" required />
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for file upload modules -->
+        <div id="uploadModules" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upload Excel File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data" th:action="@{/upload-modules}">
+                            <input type="file" name="file" accept=".xlsx" required />
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal for file upload filieres -->
+        <div id="uploadFilieres" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Upload Excel File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data" th:action="@{/upload-filieres}">
+                            <input type="file" name="file" accept=".xlsx" required />
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

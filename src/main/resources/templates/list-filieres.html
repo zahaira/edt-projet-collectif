@@ -289,6 +289,25 @@
                 </div>
                 <div class="col-sm-6">
                     <a th:href="@{/filieres/add}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter un prof</span></a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><span>Upload Excel File</span></a>
+
+                    <!-- Modal for file upload -->
+                    <div id="uploadModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Upload Excel File</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" enctype="multipart/form-data" th:action="@{/upload-filieres}">
+                                        <input type="file" name="file" accept=".xlsx" required />
+                                        <button type="submit" class="btn btn-primary">Upload</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -302,9 +321,10 @@
             </thead>
             <tbody>
             <tr th:each="filiere : ${filieres}">
-                <td th:text="${filiere.nom_filiere}">Nom Filière</td>
+                <td th:text="${filiere.nomFiliere}">Nom Filière</td>
                 <td th:text="${filiere.effectif}">Effectif</td>
                 <td>
+                    <a th:href="@{/filieres/update/{id}(id=${filiere.id})}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip">&#xE254;</i></a>
                     <a th:href="@{/filieres/delete/{id}(id=${filiere.id})}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip">&#xE872;</i></a>
                 </td>
             </tr>

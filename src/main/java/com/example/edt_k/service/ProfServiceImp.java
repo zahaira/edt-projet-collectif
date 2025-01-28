@@ -44,9 +44,15 @@ public class ProfServiceImp implements ProfService{
 
     @Override
     public Prof saveProf(Prof prof) {
-        return profRepository.save(prof);
+        if (!profExistsByName(prof.getNom())) {
+            return profRepository.save(prof);
+        } else {
+            throw new IllegalArgumentException("A professor with the same name already exists.");
+        }
     }
-
+    private boolean profExistsByName(String name) {
+        return profRepository.findByNom(name).isPresent();
+    }
     @Override
     public void updateProf(Prof prof) {
 

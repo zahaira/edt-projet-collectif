@@ -43,7 +43,6 @@ public class ModuleController {
         moduleService.saveModule(module);
         return "redirect:/modules";
     }
-
     // Supprimer un module
     @GetMapping("/delete/{id}")
     public String deleteModule(@PathVariable Long id) {

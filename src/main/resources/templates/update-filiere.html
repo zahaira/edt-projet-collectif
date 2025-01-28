@@ -1,0 +1,20 @@
+<!-- src/main/resources/templates/update-filiere.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Filiere</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Update Filiere</h2>
+    <form th:action="@{/filieres/update/{id}(id=${filiere.id})}" method="post">
+        <div class="form-group">
+            <label for="effectif">Effectif:</label>
+            <input type="number" class="form-control" id="effectif" name="effectif" th:value="${filiere.effectif}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+</body>
+</html>
