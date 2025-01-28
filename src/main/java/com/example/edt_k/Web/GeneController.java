@@ -26,6 +26,10 @@ public class GeneController {
     private PopulationServiceimp populationServiceimp;
     private GeneServiceImp geneService;
     private ExamenServiceImp examenServiceImp;
+    @GetMapping("home")
+    public String acceuil(Model model){
+        return "acceuil";
+    }
     @GetMapping("/test-genetic-algo")
     public String testGeneticAlgo(Model model) {
         // Supprimer tous les examens existants et exécuter l'algorithme génétique

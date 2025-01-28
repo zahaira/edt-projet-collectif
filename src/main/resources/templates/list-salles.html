@@ -21,8 +21,20 @@
       font-size: 13px;
     }
     .navbar {
-      margin-bottom: 20px;
-    }
+            margin-bottom: 30px;
+            background-color: rgba(0, 95, 115, 0.8);
+            border: none;
+        }
+
+        .navbar a {
+            color: white !important;
+            font-size: 18px;
+        }
+
+        .navbar .navbar-brand {
+            font-weight: 700;
+            font-size: 22px;
+        }
     .table-wrapper {
       background: #fff;
       padding: 20px 25px;
@@ -264,9 +276,9 @@
       <li><a th:href="@{/salles}">Salles</a></li>
       <li><a th:href="@{/modules}">Modules</a></li>
       <li><a th:href="@{/filieres}">Filieres</a></li>
-      <li><a th:href="@{/daySchedulePattern}">daySchedulePattern</a></li>
-      <li><a th:href="@{/edt}">Edts</a></li>
-      <li><a th:href="@{/edt/generer}">generate</a></li>
+      <li><a th:href="@{/daySchedulePattern}">Jour de l'emploi du temps</a></li>
+      <li><a th:href="@{/edt}">Emploi du temps</a></li>
+      <li><a th:href="@{/edt/generer}">Générer</a></li>
     </ul>
   </div>
 </nav>

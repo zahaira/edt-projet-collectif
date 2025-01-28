@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Génération Automatique d'Emploi du Temps</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            color: #fff;
+            background: url('https://img2.storyblok.com//f/64062/992x657/de15b07cbe/yale-university.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            margin-bottom: 30px;
+            background-color: rgba(0, 95, 115, 0.8);
+            border: none;
+        }
+
+        .navbar a {
+            color: white !important;
+            font-size: 18px;
+        }
+
+        .navbar .navbar-brand {
+            font-weight: 700;
+            font-size: 22px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 150px 30px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-section h1 {
+            font-size: 3em;
+            color: #00bcd4;
+            font-weight: 700;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        .features {
+            text-align: center;
+            padding: 50px 30px;
+            background-color: #f7f7f7;
+        }
+
+        .features h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .feature-box {
+            display: inline-block;
+            width: 30%;
+            margin: 15px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-box h3 {
+            font-size: 1.5em;
+            color: #0077b6;
+        }
+
+        .feature-box p {
+            color: #555;
+        }
+
+        .cta-section {
+            text-align: center;
+            background-color: #0077b6;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .cta-section h2 {
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+
+        .cta-section a {
+            background-color: #00bcd4;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .cta-section a:hover {
+            background-color: #0288d1;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/edt/home">
+                <i class="fa fa-clock-o"></i> Time
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/profs}">Professeurs</a></li>
+            <li><a th:href="@{/salles}">Salles</a></li>
+            <li><a th:href="@{/modules}">Modules</a></li>
+            <li><a th:href="@{/filieres}">Filieres</a></li>
+            <li><a th:href="@{/daySchedulePattern}">Jour de l'emploi du temps</a></li>
+            <li><a th:href="@{/edt}">Emploi du temps</a></li>
+            <li><a th:href="@{/edt/generer}">Générer</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="hero-section">
+    <h1>Génération Automatique d'Emploi du Temps</h1>
+    <p>Optimisez votre gestion de temps grâce à notre générateur intelligent d'emplois du temps pour écoles et universités.</p>
+</div>
+
+<div class="features" id="features">
+    <h2>Fonctionnalités</h2>
+    <div class="feature-box">
+        <h3>Automatisation</h3>
+        <p>Générez vos emplois du temps automatiquement en fonction des données saisies, sans effort manuel.</p>
+    </div>
+    <div class="feature-box">
+        <h3>Optimisation</h3>
+        <p>Optimisez les horaires pour éviter les conflits et maximiser l'efficacité des cours et des examens.</p>
+    </div>
+    <div class="feature-box">
+        <h3>Interface Simple</h3>
+        <p>Interface facile à utiliser, avec un design moderne et épuré pour une navigation intuitive.</p>
+    </div>
+</div>
+
+<div class="cta-section" id="cta">
+    <h2>Prêt à générer votre emploi du temps ?</h2>
+    <p>Accédez à notre outil et commencez à générer des emplois du temps pour vos classes et examens dès maintenant.</p>
+    <a href="/edt/generer">Générer Maintenant</a>
+</div>
+
+<footer>
+    <p>&copy; 2025 Emploi du Temps Auto. Tous droits réservés.</p>
+</footer>
+
+</body>
+</html>
