@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails de la Filière</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            color: #566787;
+            background: url('https://img2.storyblok.com//f/64062/992x657/de15b07cbe/yale-university.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-top: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-clock-o"></i> Time
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/profs}">Professeurs</a></li>
+            <li><a th:href="@{/salles}">Salles</a></li>
+            <li><a th:href="@{/modules}">Modules</a></li>
+            <li><a th:href="@{/filieres}">Filieres</a></li>
+            <li><a th:href="@{/daySchedulePattern}">daySchedulePattern</a></li>
+            <li><a th:href="@{/edt}">Edts</a></li>
+            <li><a th:href="@{/edt/generer}">generate</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Détails de la Filière</h1>
+    <p><strong>Nom de la filière:</strong> <span th:text="${gene.filiere.nom_filiere}"></span></p>
+    <p><strong>Examens:</strong></p>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Module</th>
+            <th>Professeurs</th>
+            <th>Salles</th>
+            <th>Jour</th>
+            <th>Début</th>
+            <th>Fin</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="exam : ${gene.exams}">
+            <td th:text="${exam.module.nom}">Nom Module</td>
+            <td>
+                <ul>
+                    <li th:each="prof : ${exam.profs}" th:text="${prof.nom}">Professeur</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li th:each="salle : ${exam.salles}" th:text="${salle.name}">Salle</li>
+                </ul>
+            </td>
+            <td th:text="${exam.examTime.day.date}">Jour</td>
+            <td th:text="${exam.examTime.schedulePattern.startTimes}">Début</td>
+            <td th:text="${exam.examTime.schedulePattern.endTimes}">Fin</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

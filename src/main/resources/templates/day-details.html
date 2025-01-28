@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Détails du Jour</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            color: #566787;
+            background: url('https://img2.storyblok.com//f/64062/992x657/de15b07cbe/yale-university.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .details-holder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .details-content {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            max-width: 800px;
+            width: 100%;
+        }
+        .details-content h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #435d7d;
+        }
+        .details-content label {
+            font-weight: normal;
+            color: #333;
+        }
+        .details-content .table {
+            margin-top: 20px;
+            border-color: #ddd;
+        }
+        .details-content .btn {
+            border-radius: 2px;
+            min-width: 100px;
+        }
+        .details-content .btn-primary {
+            background: #03A9F4;
+            border: none;
+        }
+        .details-content .btn-primary:hover {
+            background: #0397d6;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-clock-o"></i> Time
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/profs}">Professeurs</a></li>
+            <li><a th:href="@{/salles}">Salles</a></li>
+            <li><a th:href="@{/modules}">Modules</a></li>
+            <li><a th:href="@{/filieres}">Filieres</a></li>
+            <li><a th:href="@{/daySchedulePattern}">daySchedulePattern</a></li>
+            <li><a th:href="@{/edt}">Edts</a></li>
+            <li><a th:href="@{/edt/generer}">generate</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="details-holder">
+    <div class="details-content">
+        <h3>Détails du Jour</h3>
+        <p><strong>ID :</strong> <span th:text="${day.id}"></span></p>
+        <p><strong>Date :</strong> <span th:text="${day.date}"></span></p>
+
+        <h4>Horaires Associés</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Horaire</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Boucle sur les SchedulePatterns associés -->
+            <tr th:each="schedulePattern : ${day.daySchedulePatterns}">
+                <td th:text="${schedulePattern.id}"></td>
+                <td th:text="${schedulePattern.startTimes} + ' - ' + ${schedulePattern.endTimes}">
+                    Horaire
+                </td>
+                <td>
+                    <a th:href="@{/schedulePattern/details/{id}(id=${schedulePattern.id})}" class="btn btn-primary btn-sm">Voir</a>
+                    <a th:href="@{/schedulePattern/delete/{id}(id=${schedulePattern.id})}" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/days}" class="btn btn-secondary">Retour</a>
+    </div>
+</div>
+</body>
+</html>

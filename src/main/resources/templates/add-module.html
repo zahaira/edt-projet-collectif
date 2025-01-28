@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un module</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            color: #566787;
+            background: url('https://img2.storyblok.com//f/64062/992x657/de15b07cbe/yale-university.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .form-holder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-content {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            max-width: 600px;
+            width: 100%;
+        }
+        .form-content h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #435d7d;
+        }
+        .form-content label {
+            font-weight: normal;
+            color: #333;
+        }
+        .form-content .form-control {
+            border-radius: 2px;
+            box-shadow: none;
+            border-color: #dddddd;
+            margin-bottom: 20px;
+        }
+        .form-content .btn {
+            border-radius: 2px;
+            min-width: 100px;
+        }
+        .form-content .btn-primary {
+            background: #03A9F4;
+            border: none;
+        }
+        .form-content .btn-primary:hover {
+            background: #0397d6;
+        }
+        .form-content a {
+            color: #03A9F4;
+            text-decoration: none;
+        }
+        .form-content a:hover {
+            color: #0397d6;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-clock-o"></i> Time
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/profs}">Professeurs</a></li>
+            <li><a th:href="@{/salles}">Salles</a></li>
+            <li><a th:href="@{/modules}">Modules</a></li>
+            <li><a th:href="@{/filieres}">Filieres</a></li>
+            <li><a th:href="@{/daySchedulePattern}">daySchedulePattern</a></li>
+            <li><a th:href="@{/edt}">Edts</a></li>
+            <li><a th:href="@{/edt/generer}">generate</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="form-holder">
+    <div class="form-content">
+        <h3>Ajouter un Module</h3>
+        <p>Fill in the data below.</p>
+        <form th:action="@{/modules}" th:object="${module}" method="post" class="requires-validation" novalidate>
+            <div class="form-group">
+                <label for="module">Nom de module :</label>
+                <input class="form-control" type="text" id="module" placeholder="Nom" th:field="*{nom}" required/>
+            </div>
+            <div class="form-group">
+                <label>Nom de prof :</label>
+                <select class="form-control" th:field="*{prof}" required>
+                    <option value="" disabled selected>Choisissez un professeur</option>
+                    <option th:each="prof : ${profs}" th:value="${prof.id}" th:text="${prof.nom}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Filiere :</label>
+                <select class="form-control" th:field="*{filiere}" required>
+                    <option value="" disabled selected>Choisissez une filiere</option>
+                    <option th:each="filiere : ${filieres}" th:value="${filiere.id}" th:text="${filiere.nom_filiere}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Prise :</label><br>
+                <label class="radio-inline">
+                    <input type="radio" name="prise" th:field="*{prise}" value="true" required> Oui
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="prise" th:field="*{prise}" value="false" required> Non
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+            <a th:href="@{/modules}">Retourner à la liste des modules</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

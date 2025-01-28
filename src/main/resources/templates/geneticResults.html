@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Résultats de l'algorithme génétique</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            color: #566787;
+            background: url('https://img2.storyblok.com//f/64062/992x657/de15b07cbe/yale-university.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .table-wrapper {
+            background: #fff;
+            padding: 20px 25px;
+            margin: 30px auto;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        }
+        .table-title {
+            padding-bottom: 15px;
+            background: #435d7d;
+            color: #fff;
+            padding: 16px 30px;
+            margin: -20px -25px 10px;
+            border-radius: 3px 3px 0 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-clock-o"></i> Time
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/profs}">Professeurs</a></li>
+            <li><a th:href="@{/salles}">Salles</a></li>
+            <li><a th:href="@{/modules}">Modules</a></li>
+            <li><a th:href="@{/filieres}">Filieres</a></li>
+            <li><a th:href="@{/daySchedulePattern}">daySchedulePattern</a></li>
+            <li><a th:href="@{/edt}">Edts</a></li>
+            <li><a th:href="@{/edt/generer}">generate</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container" style="background-color: white;">
+<h1>Résultats de l'algorithme génétique</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Filière</th>
+        <th>Date de génération</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Boucle sur les objets Gene -->
+    <tr th:each="gene : ${genes}">
+        <td th:text="${gene.id}">ID</td>
+        <td th:text="${gene.filiere.nom_filiere}">Nom de la filière</td>
+        <td th:text="${gene.currentDate}">Date</td>
+        <td>
+            <a th:href="@{/edt/{id}(id=${gene.id})}" class="btn btn-primary btn-sm">
+                Voir plus
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter un filiere</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            color: #566787;
+            background: url('https://img2.storyblok.com//f/64062/992x657/de15b07cbe/yale-university.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .form-holder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-content {
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0,0,0,.05);
+            max-width: 600px;
+            width: 100%;
+        }
+        .form-content h3 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #435d7d;
+        }
+        .form-content label {
+            font-weight: normal;
+            color: #333;
+        }
+        .form-content .form-control {
+            border-radius: 2px;
+            box-shadow: none;
+            border-color: #dddddd;
+            margin-bottom: 20px;
+        }
+        .form-content .btn {
+            border-radius: 2px;
+            min-width: 100px;
+        }
+        .form-content .btn-primary {
+            background: #03A9F4;
+            border: none;
+        }
+        .form-content .btn-primary:hover {
+            background: #0397d6;
+        }
+        .form-content a {
+            color: #03A9F4;
+            text-decoration: none;
+        }
+        .form-content a:hover {
+            color: #0397d6;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <i class="fa fa-clock-o"></i> Time
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/profs}">Professeurs</a></li>
+            <li><a th:href="@{/salles}">Salles</a></li>
+            <li><a th:href="@{/modules}">Modules</a></li>
+            <li><a th:href="@{/filieres}">Filieres</a></li>
+            <li><a th:href="@{/daySchedulePattern}">daySchedulePattern</a></li>
+            <li><a th:href="@{/edt}">Edts</a></li>
+            <li><a th:href="@{/edt/generer}">generate</a></li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="form-holder">
+    <div class="form-content">
+        <h3>Ajouter une Filière</h3>
+        <p>Fill in the data below.</p>
+        <form th:action="@{/filieres}" th:object="${new_filiere}" method="post" class="requires-validation" novalidate>
+            <div class="form-group">
+                <label for="filiere">Nom de la Filière :</label>
+                <input type="text" id="filiere" th:field="*{nom_filiere}" required/><br><br>
+            </div>
+            <div class="form-group">
+                <!-- Champ pour l'effectif -->
+                <label for="effectif">Effectif :</label>
+                <input type="number" id="effectif" th:field="*{effectif}" required/><br><br>
+
+                <button type="submit">Ajouter</button>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+            <a th:href="@{/filieres}">Retourner à la liste des filieres</a>
+        </form>
+    </div>
+</div>
+
+<br>
+<a th:href="@{/filieres}">Retourner à la liste des filières</a>
+</body>
+</html>
