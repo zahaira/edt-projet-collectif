@@ -289,8 +289,28 @@
         <div class="col-sm-6">
           <h2>Liste des <b>Salles</b></h2>
         </div>
+
         <div class="col-sm-6">
           <a th:href="@{/salles/add}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter une salle</span></a>
+          <a class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><span>Upload Excel File</span></a>
+
+          <!-- Modal for file upload -->
+          <div id="uploadModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Upload Excel File</h4>
+                </div>
+                <div class="modal-body">
+                  <form method="post" enctype="multipart/form-data" th:action="@{/upload-salles}">
+                    <input type="file" name="file" accept=".xlsx" required />
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

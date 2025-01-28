@@ -44,7 +44,7 @@ public class FiliereServiceImp implements FiliereService{
 
         if (existingFiliere.isPresent()) {
             Filiere filiereToUpdate = existingFiliere.get();
-            filiereToUpdate.setNom_filiere(updatedFiliere.getNom_filiere());
+            filiereToUpdate.setNomFiliere(updatedFiliere.getNomFiliere());
             filiereToUpdate.setEffectif(updatedFiliere.getEffectif());
             // Mettez à jour d'autres propriétés si nécessaire
             filiereRepository.save(filiereToUpdate);
@@ -60,4 +60,16 @@ public class FiliereServiceImp implements FiliereService{
     }
 
 
+    public void deleteById(Long id) {
+        filiereRepository.deleteById(id);
+    }
+
+    public void updateEffectif(Long id, int effectif) {
+        Optional<Filiere> filiere = filiereRepository.findById(id);
+        if (filiere.isPresent()) {
+            Filiere existingFiliere = filiere.get();
+            existingFiliere.setEffectif(effectif);
+            filiereRepository.save(existingFiliere);
+        }
+    }
 }

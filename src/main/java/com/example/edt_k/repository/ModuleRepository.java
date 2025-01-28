@@ -2,6 +2,7 @@ package com.example.edt_k.repository;
 
 import com.example.edt_k.entity.Filiere;
 import com.example.edt_k.entity.Module;
+import com.example.edt_k.entity.Prof;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,6 @@ import java.util.Optional;
 public interface ModuleRepository extends JpaRepository<Module,Long> {
 
     List<Module> findByFiliere(Filiere filiere);
+    Optional<Module> findByNom(String nom);
+
 }

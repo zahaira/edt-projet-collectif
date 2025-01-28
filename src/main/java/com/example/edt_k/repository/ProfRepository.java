@@ -12,5 +12,8 @@ import java.util.Set;
 public interface ProfRepository extends CrudRepository<Prof,Long> {
     Optional<Prof> findProfByModules(Optional<Module> module);
     Set<Prof> findByExamens_Id(Long examenId);
+    Optional<Prof> findByNom(String nom);
+
+
 
 }

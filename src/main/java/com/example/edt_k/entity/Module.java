@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 
+import java.util.Optional;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -36,7 +38,7 @@ public class Module {
     }
 
     @JsonIgnore
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "filiere_id", referencedColumnName = "id")
     private Filiere filiere;
 

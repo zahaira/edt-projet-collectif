@@ -24,7 +24,15 @@ public class Filiere {
 
 
     @Column(name = "nom_filiere", nullable = false)
-    private String nom_filiere;
+    private String nomFiliere;
+
+    public String getNomFiliere() {
+        return nomFiliere;
+    }
+
+    public void setNomFiliere(String nomFiliere) {
+        this.nomFiliere = nomFiliere;
+    }
 
     @Column(name = "effectif", nullable = false)
     private int effectif;
@@ -41,7 +49,7 @@ public class Filiere {
     public String toString() {
         return "Filiere{" +
                 "id=" + id +
-                ", nom_filiere='" + nom_filiere + '\'' +
+                ", nom_filiere='" + nomFiliere + '\'' +
                 ", effectif=" + effectif
                 ;
     }
