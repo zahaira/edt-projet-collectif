@@ -61,7 +61,6 @@ public class Prof {
     )
     private Set<Salle> salles ;
 
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "examen_prof",
