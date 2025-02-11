@@ -1,10 +1,10 @@
 package com.example.edt_k.service;
 
-import com.example.edt_k.entity.Filiere;
+import com.example.edt_k.entity.*;
 import com.example.edt_k.entity.Module;
-import com.example.edt_k.entity.Prof;
-import com.example.edt_k.entity.Salle;
 import com.example.edt_k.repository.FiliereRepository;
+import com.example.edt_k.repository.DayRepository;
+import com.example.edt_k.repository.SchedulePatternRepository;
 import com.example.edt_k.repository.ModuleRepository;
 import com.example.edt_k.repository.ProfRepository;
 import com.example.edt_k.repository.SalleRepository;
@@ -15,6 +15,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +28,9 @@ public class ExcelService {
     private final ProfRepository profRepository;
     private final ModuleRepository moduleRepository;
     private final FiliereRepository filiereRepository;
+    private final DayRepository dayRepository;
+    private final SchedulePatternRepository schedulePatternRepository;
+
 
 
 
@@ -247,5 +252,105 @@ public class ExcelService {
         }
         workbook.close();
         return profs;
+    }
+
+    public void saveDays(MultipartFile file) {
+        try {
+            List<Day> days = parseExcelFileForDays(file);
+            for (Day day : days) {
+                if (day.getDate() == null) {
+                    throw new IllegalArgumentException("Date cannot be null");
+                }
+                if (!dayExistsByDate(day.getDate())) {
+                    dayRepository.save(day);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to parse Excel file: " + e.getMessage());
+        }
+    }
+
+    private boolean dayExistsByDate(LocalDate date) {
+        return dayRepository.findByDate(date).isPresent();
+    }
+
+    private List<Day> parseExcelFileForDays(MultipartFile file) throws IOException {
+        List<Day> days = new ArrayList<>();
+        Workbook workbook = new XSSFWorkbook(file.getInputStream());
+        Sheet sheet = workbook.getSheetAt(0);
+        boolean isFirstRow = true;
+        for (Row row : sheet) {
+            if (isFirstRow) {
+                isFirstRow = false;
+                continue; // Skip the first row
+            }
+            Day day = new Day();
+
+            // Check and set the date
+            Cell dateCell = row.getCell(0);
+            if (dateCell != null && dateCell.getCellType() == CellType.STRING) {
+                day.setDate(LocalDate.parse(dateCell.getStringCellValue()));
+            } else if (dateCell != null && dateCell.getCellType() == CellType.NUMERIC) {
+                day.setDate(dateCell.getLocalDateTimeCellValue().toLocalDate());
+            }
+
+            days.add(day);
+        }
+        workbook.close();
+        return days;
+    }
+
+    public void saveSchedulePatterns(MultipartFile file) {
+        try {
+            List<SchedulePattern> schedulePatterns = parseExcelFileForSchedulePatterns(file);
+            for (SchedulePattern schedulePattern : schedulePatterns) {
+                if (schedulePattern.getStartTimes() == null || schedulePattern.getEndTimes() == null) {
+                    throw new IllegalArgumentException("Start time and end time cannot be null");
+                }
+                if (!schedulePatternExists(schedulePattern.getStartTimes(), schedulePattern.getEndTimes())) {
+                    schedulePatternRepository.save(schedulePattern);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to parse Excel file: " + e.getMessage());
+        }
+    }
+
+    private boolean schedulePatternExists(LocalTime startTimes, LocalTime endTimes) {
+        return schedulePatternRepository.findByStartTimesAndEndTimes(startTimes, endTimes).isPresent();
+    }
+
+    private List<SchedulePattern> parseExcelFileForSchedulePatterns(MultipartFile file) throws IOException {
+        List<SchedulePattern> schedulePatterns = new ArrayList<>();
+        Workbook workbook = new XSSFWorkbook(file.getInputStream());
+        Sheet sheet = workbook.getSheetAt(0);
+        boolean isFirstRow = true;
+        for (Row row : sheet) {
+            if (isFirstRow) {
+                isFirstRow = false;
+                continue; // Skip the first row
+            }
+            SchedulePattern schedulePattern = new SchedulePattern();
+
+            // Check and set the start time
+            Cell startTimeCell = row.getCell(0);
+            if (startTimeCell != null && startTimeCell.getCellType() == CellType.STRING) {
+                schedulePattern.setStartTimes(LocalTime.parse(startTimeCell.getStringCellValue()));
+            } else if (startTimeCell != null && startTimeCell.getCellType() == CellType.NUMERIC) {
+                schedulePattern.setStartTimes(startTimeCell.getLocalDateTimeCellValue().toLocalTime());
+            }
+
+            // Check and set the end time
+            Cell endTimeCell = row.getCell(1);
+            if (endTimeCell != null && endTimeCell.getCellType() == CellType.STRING) {
+                schedulePattern.setEndTimes(LocalTime.parse(endTimeCell.getStringCellValue()));
+            } else if (endTimeCell != null && endTimeCell.getCellType() == CellType.NUMERIC) {
+                schedulePattern.setEndTimes(endTimeCell.getLocalDateTimeCellValue().toLocalTime());
+            }
+
+            schedulePatterns.add(schedulePattern);
+        }
+        workbook.close();
+        return schedulePatterns;
     }
 }

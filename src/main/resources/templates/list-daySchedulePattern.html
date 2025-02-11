@@ -276,7 +276,7 @@
             <li><a th:href="@{/salles}">Salles</a></li>
             <li><a th:href="@{/modules}">Modules</a></li>
             <li><a th:href="@{/filieres}">Filieres</a></li>
-            <li><a th:href="@{/daySchedulePattern}">Callendrier</a></li>
+            <li><a th:href="@{/daySchedulePattern}">Calendrier</a></li>
             <li><a th:href="@{/edt}">Emploi du temps filieres</a></li>
             <li><a th:href="@{/edtp/prof/0}">Emploi du temps profs</a></li>
             <li><a th:href="@{/edt/generer}">Générer</a></li>
@@ -294,8 +294,48 @@
                     <h2>Gestion des <b>Jours et Horaires</b></h2>
                 </div>
                 <div class="col-sm-6">
-                    <a href="days/add" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Ajouter un jour</span></a>
-                    <a href="/schedulePatterns/add" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Ajouter un horaire</span></a>
+                    <a href="days/add" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Ajouter jour</span></a>
+                    <a href="/schedulePatterns/add" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Ajouter horaire</span></a>
+                    <div class="btn-group" style="margin-left: 10px;">
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#uploadDaysModal"  style="margin-right: 10px;" ><span>Upload jours File</span></a>
+                        <a class="btn btn-primary" data-toggle="modal" data-target="#uploadSchedulePatternsModal"  style="margin-left: 10px;"><span>Upload Horaire File</span></a>
+                    </div>
+                </div>
+
+                <!-- Modal for uploading days -->
+                <div id="uploadDaysModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Upload jours Excel File</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" enctype="multipart/form-data" th:action="@{/upload-days}">
+                                    <input type="file" name="file" accept=".xlsx" required />
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal for uploading schedule patterns -->
+                <div id="uploadSchedulePatternsModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Upload Horaire Excel File</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" enctype="multipart/form-data" th:action="@{/upload-schedulePatterns}">
+                                    <input type="file" name="file" accept=".xlsx" required />
+                                    <button type="submit" class="btn btn-primary">Upload</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -315,11 +355,10 @@
                 <td th:text="${day.date}">Nom du jour</td>
                 <td>
                     <!-- Delete button -->
-                    <a href="/days/delete/${day.id}" class="delete" title="Supprimer">
+                    <a th:href="@{/days/delete/{id}(id=${day.id})}" class="delete" title="Supprimer">
                         <i class="material-icons">&#xE872;</i>
                     </a>
-                    <!-- Details button -->
-                    <a href="/days/details/${day.id}" class="details btn btn-warning btn-sm" title="Voir les détails">
+                    <a th:href="@{/days/details/{id}(id=${day.id})}" class="details btn btn-warning btn-sm" title="Voir les détails">
                         Voir détails
                     </a>
                 </td>

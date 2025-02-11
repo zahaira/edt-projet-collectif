@@ -85,7 +85,7 @@
             <li><a th:href="@{/salles}">Salles</a></li>
             <li><a th:href="@{/modules}">Modules</a></li>
             <li><a th:href="@{/filieres}">Filieres</a></li>
-            <li><a th:href="@{/daySchedulePattern}">Callendrier</a></li>
+            <li><a th:href="@{/daySchedulePattern}">Calendrier</a></li>
             <li><a th:href="@{/edt}">Emploi du temps filieres</a></li>
             <li><a th:href="@{/edtp/prof/0}">Emploi du temps profs</a></li>
             <li><a th:href="@{/edt/generer}">Générer</a></li>
@@ -112,14 +112,14 @@
             </thead>
             <tbody>
             <!-- Boucle sur les SchedulePatterns associés -->
-            <tr th:each="schedulePattern : ${day.daySchedulePatterns}">
-                <td th:text="${schedulePattern.id}"></td>
-                <td th:text="${schedulePattern.startTimes} + ' - ' + ${schedulePattern.endTimes}">
+            <tr th:each="daySchedulePattern : ${day.daySchedulePatterns}">
+                <td th:text="${daySchedulePattern.schedulePattern.id}"></td>
+                <td th:text="${daySchedulePattern.schedulePattern.startTimes} + ' - ' + ${daySchedulePattern.schedulePattern.endTimes}">
                     Horaire
                 </td>
                 <td>
-                    <a th:href="@{/schedulePattern/details/{id}(id=${schedulePattern.id})}" class="btn btn-primary btn-sm">Voir</a>
-                    <a th:href="@{/schedulePattern/delete/{id}(id=${schedulePattern.id})}" class="btn btn-danger btn-sm">Supprimer</a>
+                    <a th:href="@{/schedulePattern/details/{id}(id=${daySchedulePattern.schedulePattern.id})}" class="btn btn-primary btn-sm">Voir</a>
+                    <a th:href="@{/schedulePattern/delete/{id}(id=${daySchedulePattern.schedulePattern.id})}" class="btn btn-danger btn-sm">Supprimer</a>
                 </td>
             </tr>
             </tbody>
