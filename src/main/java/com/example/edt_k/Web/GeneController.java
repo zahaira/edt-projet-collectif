@@ -26,7 +26,7 @@ public class GeneController {
     private PopulationServiceimp populationServiceimp;
     private GeneServiceImp geneService;
     private ExamenServiceImp examenServiceImp;
-    @GetMapping("home")
+    @GetMapping("/home")
     public String acceuil(Model model){
         return "acceuil";
     }
