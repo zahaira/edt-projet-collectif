@@ -15,8 +15,13 @@ public class SecurityConfig {
                         .anyRequest().authenticated() // Secure all requests
                 )
                 .formLogin(form -> form
-                        .loginPage("/") // Custom login page
-                        .defaultSuccessUrl("/edt/home", true) // Redirect to /edt/home after successful login
+                        .loginPage("/login") // Custom login page
+                        .defaultSuccessUrl("/", true) // Redirect to /edt/home after successful login
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // Custom logout URL
+                        .logoutSuccessUrl("/login?logout") // Redirect to login page after logout
                         .permitAll()
                 )
                 .csrf(csrf -> csrf.disable()); // Disable CSRF for testing

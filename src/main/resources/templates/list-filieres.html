@@ -277,6 +277,8 @@
             <li><a th:href="@{/edt}">Emploi du temps filieres</a></li>
             <li><a th:href="@{/edtp/prof/0}">Emploi du temps profs</a></li>
             <li><a th:href="@{/edt/generer}">Générer</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+
         </ul>
     </div>
 </nav>
@@ -289,7 +291,7 @@
                     <h2>Liste des <b>Filières</b></h2>
                 </div>
                 <div class="col-sm-6">
-                    <a th:href="@{/filieres/add}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter un prof</span></a>
+                    <a th:href="@{/filieres/add}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter une Filière</span></a>
                     <a class="btn btn-primary" data-toggle="modal" data-target="#uploadModal"><span>Upload Excel File</span></a>
 
                     <!-- Modal for file upload -->
