@@ -82,6 +82,28 @@
     </style>
 </head>
 
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+                <i class="fa fa-clock-o"></i> Time
+            </a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a th:href="@{/profs}">Professeurs</a></li>
+            <li><a th:href="@{/salles}">Salles</a></li>
+            <li><a th:href="@{/modules}">Modules</a></li>
+            <li><a th:href="@{/filieres}">Filieres</a></li>
+            <li><a th:href="@{/daySchedulePattern}">Calendrier</a></li>
+            <li><a th:href="@{/edt}">Emploi du temps filieres</a></li>
+            <li><a th:href="@{/edtp/prof/0}">Emploi du temps profs</a></li>
+            <li><a th:href="@{/edt/generer}">Générer</a></li>
+            <li><a th:href="@{/logout}">Logout</a></li>
+
+        </ul>
+    </div>
+</nav>
+
 <body>
 <div class="container">
     <h2>Update Filiere</h2>

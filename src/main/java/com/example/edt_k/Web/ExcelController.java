@@ -50,4 +50,24 @@ public class ExcelController {
         excelService.saveFilieres(file);
         return "redirect:/filieres";
     }
+
+    @PostMapping("/upload-days")
+    public String uploadDaysFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload.");
+            return "redirect:/daySchedulePattern";
+        }
+        excelService.saveDays(file);
+        return "redirect:/daySchedulePattern";
+    }
+
+    @PostMapping("/upload-schedulePatterns")
+    public String uploadSchedulePatternsFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload.");
+            return "redirect:/daySchedulePattern";
+        }
+        excelService.saveSchedulePatterns(file);
+        return "redirect:/daySchedulePattern";
+    }
 }
