@@ -72,4 +72,8 @@ public class ExamenServiceImp implements ExamenService {
     public void saveExamen(Examen examen) {
         examenRepository.save(examen);
     }
+
+    public List<Examen> getProfEmploiDuTemps(Long profId) {
+        return examenRepository.findByProfs_Id(profId);
+    }
 }

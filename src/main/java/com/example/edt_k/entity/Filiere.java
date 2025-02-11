@@ -23,7 +23,7 @@ public class Filiere {
     private Long id;
 
 
-    @Column(name = "nom_filiere", nullable = false)
+    @Column(name = "nomFiliere", nullable = false)
     private String nomFiliere;
 
     public String getNomFiliere() {
@@ -49,7 +49,7 @@ public class Filiere {
     public String toString() {
         return "Filiere{" +
                 "id=" + id +
-                ", nom_filiere='" + nomFiliere + '\'' +
+                ", nomFiliere='" + nomFiliere + '\'' +
                 ", effectif=" + effectif
                 ;
     }

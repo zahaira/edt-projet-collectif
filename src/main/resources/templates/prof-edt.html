@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Détails de la Filière</title>
+    <title>Détails des Examens</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Ajout de Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
     <style>
         body {
             color: #3a3a3a;
@@ -76,23 +78,6 @@
         tr:hover {
             background-color: #e0f7fa;
         }
-
-        .table-bordered {
-            border: 2px solid #0077b6;
-        }
-
-        .table-bordered th, .table-bordered td {
-            border: 1px solid #ddd;
-        }
-
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        li {
-            padding: 3px;
-        }
     </style>
 </head>
 <body>
@@ -115,9 +100,18 @@
 </nav>
 
 <div class="container">
-    <h1>Détails de la Filière</h1>
-    <p><strong>Nom de la filière:</strong> <span th:text="${gene.filiere.nomFiliere}"></span></p>
-    <p><strong>Examens:</strong></p>
+    <h1>Détails des Examens</h1>
+    <!-- Barre de sélection des professeurs -->
+    <div class="form-group">
+        <label for="prof-select">Sélectionnez un professeur :</label>
+        <select id="prof-select" class="form-control">
+            <option value="">-- Choisissez un professeur --</option>
+            <option th:each="prof : ${profs}" th:value="${prof.id}" th:text="${prof.nom}"></option>
+        </select>
+        <button class="btn btn-primary" onclick="filtrerEdt()">Rechercher</button>
+    </div>
+
+    <!-- Tableau des examens -->
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -130,7 +124,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="exam : ${gene.exams}">
+        <tr th:each="exam : ${examens}">
             <td th:text="${exam.module.nom}">Nom Module</td>
             <td>
                 <ul>
@@ -149,5 +143,25 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    $(document).ready(function() {
+        // Active Select2 sur le select des profs
+        $('#prof-select').select2({
+            placeholder: "Rechercher un professeur...",
+            allowClear: true
+        });
+    });
+
+    function filtrerEdt() {
+        let profId = document.getElementById("prof-select").value;
+        if (profId) {
+            window.location.href = "/edtp/prof/" + profId;
+        } else {
+            alert("Veuillez sélectionner un professeur.");
+        }
+    }
+</script>
 </body>
+
 </html>

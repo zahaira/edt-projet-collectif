@@ -1,8 +1,8 @@
 package com.example.edt_k.Web;
 
+import com.example.edt_k.entity.Examen;
 import com.example.edt_k.entity.Prof;
-import com.example.edt_k.service.ProfService;
-import com.example.edt_k.service.ProfServiceImp;
+import com.example.edt_k.service.*;
 import com.example.edt_k.service.ProfServiceImp;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,8 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/profs")
 public class ProfController {
+    @Autowired
+    private ExamenServiceImp examenService;
 
     @Autowired
     private ProfService profService;
@@ -49,5 +51,13 @@ public class ProfController {
         profService.deleteProf(id);
         return "redirect:/profs"; // Redirection après suppression
     }
+
+    @GetMapping("/{id}/emploi")
+    public String emploiDuTemps(@PathVariable Long id, Model model) {
+        List<Examen> examens = examenService.getProfEmploiDuTemps(id);
+        model.addAttribute("examens", examens);
+        return "prof-edt";
+    }
+
 
 }

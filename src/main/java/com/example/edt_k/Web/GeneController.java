@@ -29,8 +29,8 @@ public class GeneController {
     @GetMapping("/test-genetic-algo")
     public String testGeneticAlgo(Model model) {
         // Supprimer tous les examens existants et exécuter l'algorithme génétique
-        examenServiceImp.DeleteAllExams();
-        geneService.deleted();
+        //examenServiceImp.DeleteAllExams();
+        //geneService.deleted();
         Chromosome result = populationServiceimp.genetic_algo();
 
         // Enregistrer les nouveaux gènes dans la base de données
